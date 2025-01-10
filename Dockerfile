@@ -8,6 +8,9 @@ RUN apk --no-cache add curl
 RUN mkdir -p /app && chown node:node /app
 WORKDIR /app
 
+ARG UID=1000
+ARG GID=1000
+
 USER node
 
 COPY --chown=node:node . .
@@ -15,6 +18,8 @@ COPY --chown=node:node . .
 RUN \
     # Allow mounting of these files, which have no default
     touch .env ; \
+    mkdir /.npm && \
+    chown -R $UID:$GID /.npm && \
     # Create directories for the volumes to inherit the correct permissions
     mkdir -p /app/client/public/images /app/api/logs ; \
     npm config set fetch-retry-maxtimeout 600000 ; \
