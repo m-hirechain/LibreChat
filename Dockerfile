@@ -8,8 +8,8 @@ RUN apk --no-cache add curl
 RUN mkdir -p /app && chown node:node /app
 WORKDIR /app
 
-ARG UID=1000
-ARG GID=1000
+ARG UID
+ARG GID
 
 USER node
 
