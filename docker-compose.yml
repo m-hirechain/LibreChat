@@ -10,9 +10,6 @@ services:
       - mongodb
       - rag_api
     image: ghcr.io/danny-avila/librechat-dev:latest
-    args:
-      - UID=${UID}
-      - GID=${GID}
     restart: always
     user: "${UID}:${GID}"
     extra_hosts:
